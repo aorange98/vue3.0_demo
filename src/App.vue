@@ -1,32 +1,39 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <!-- <home :school="state.school"/> -->
+    <!-- <about/> -->
+    <lifeCyle/>
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Home from '@/views/Home.vue'
+import About from '@/views/About.vue'
+import lifeCyle from '@/views/lifeCyle.vue'
+import {reactive} from "vue"
+  export default {
+    name:"app",
+    setup(){
+      const state = reactive({
+        school:"我是清华大学"
+      })
+      
+      setTimeout(()=>{
+        state.school = "我已经被修改了"
+      },1000)
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+      return {
+        state
+      }
+    },
+    components:{
+      Home,
+      About,
+      lifeCyle
     }
   }
-}
+</script>
+
+<style lang="less" scoped>
+
 </style>
